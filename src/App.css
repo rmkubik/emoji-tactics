@@ -1,0 +1,100 @@
+body {
+  font: 14px "Helvetica", Futura, sans-serif;
+  margin: 20px;
+}
+
+ol, ul {
+  padding-left: 30px;
+}
+
+.board-row:after {
+  clear: both;
+  content: "";
+  display: table;
+}
+
+.status {
+  margin-bottom: 10px;
+}
+
+.tile {
+  background: #fff;
+  border: 1px solid #999;
+  float: left;
+  font-size: 24px;
+  font-weight: bold;
+  line-height: 34px;
+  height: 34px;
+  margin-right: -1px;
+  margin-top: -1px;
+  padding: 0;
+  text-align: center;
+  width: 34px;
+}
+
+.tile-selected {
+  border: 3px solid rgba(41, 128, 185, 1.0);
+  /* background-color: rgba(52, 152, 219, 0.5); */
+  background: repeating-linear-gradient(
+    45deg,
+    #606dbc,
+    #606dbc 5px,
+    #465298 5px,
+    #465298 10px
+  );
+}
+
+.tile-moveHighlighted {
+  border: 3px dashed rgba(39, 174, 96, 1.0);
+  background-color: rgba(46, 204, 113, 0.5);
+}
+
+.tile-actionHighlighted {
+  border: 3px solid rgba(211, 84, 0,1.0);
+  background-color: rgba(230, 126, 34, 0.5);
+}
+
+.tile-actionHighlighted:hover {
+  border: 3px solid rgba(192, 57, 43, 1.0);
+  background-color: rgba(231, 76, 60, 0.5);
+}
+
+.tile:focus {
+  outline: none;
+}
+
+.kbd-navigation .tile:focus {
+  background: #ddd;
+}
+
+.game {
+  display: flex;
+  flex-direction: row;
+}
+
+.game-info {
+  margin-left: 20px;
+}
+
+.unit {
+  font-family: "Apple Color Emoji","Segoe UI Emoji","NotoColorEmoji","Segoe UI Symbol","Android Emoji" !important;
+  display: block;
+}
+
+ol {
+  height: 300px;
+  min-width: 300px;
+  overflow: hidden; 
+  overflow-y: scroll;
+}
+
+.game-end-text {
+  font-size: 128px;
+  color: rgba(39, 174, 96, 1.0);
+  display: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -25%;
+  margin-left: -25%;
+}
