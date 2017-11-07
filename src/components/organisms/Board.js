@@ -33,6 +33,8 @@ export class Board extends Component {
                     break;
                 case 'tookAction':
                     break;
+                default:
+                    break;
             }
         }
         const rows = this.props.tiles.map((tileRow, rowNumber) => {
@@ -51,6 +53,8 @@ export class Board extends Component {
                                 break;
                             case 'moved':
                                 tileActionHighlighted = true;
+                                break;
+                            default:
                                 break;
                         }
                     }
