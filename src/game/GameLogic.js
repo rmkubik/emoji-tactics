@@ -73,11 +73,17 @@ export class GameLogic {
             }
         }
         
-        // Did this action end the game? (all units on at least one side are dead)
-        let gameEnd = false;
-        this.gameState.currentPlayer.units.reduce(() => {
-
-        });
+        // Did this action end the game? (only one team has alive units)
+        let playersWithAliveUnits = this.players.filter((player) => {
+            return !player.units.reduce((areUnitsDead, unit) => {
+                return areUnitsDead && unit.fsm.currentState === 'dead';
+            }, true);
+        })
+        if (playersWithAliveUnits.length === 1) {
+            this.gameState.winner = playersWithAliveUnits[0];
+        } else if (playersWithAliveUnits.length === 0) {
+            this.gameState.winner = "draw";
+        }
 
         // has current player moved all units?
         let finishedTurn = true;
