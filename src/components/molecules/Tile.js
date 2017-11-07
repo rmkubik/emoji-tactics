@@ -1,26 +1,40 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-export function Tile(props) {
-    let className = "tile";
-    if (props.tileSelected) {
-        className += " tile-selected";
+export class Tile extends React.Component {
+    componentDidMount() {
+        const unitElement = this.refs.unit
+        unitElement.addEventListener('animationend', () => {
+            unitElement.remove();
+        });
     }
-    if (props.tileMoveHighlighted) {
-        className += " tile-moveHighlighted";
+
+    render() {
+        let className = "tile";
+        if (this.props.tileSelected) {
+            className += " tile-selected";
+        }
+        if (this.props.tileMoveHighlighted) {
+            className += " tile-moveHighlighted";
+        }
+        if (this.props.tileActionHighlighted) {
+            className += " tile-actionHighlighted";
+        }
+        let unitClassName = "unit";
+        if (this.props.unit && this.props.unit.fsm.currentState === 'dead') {
+            unitClassName += " animated fadeOutUp";
+        }
+        return (
+            <button className={className} onClick={this.props.onClick}>
+                <span
+                    ref="unit" 
+                    className={unitClassName}
+                >
+                    {this.props.unit ? this.props.unit.icon : ""}
+                </span>
+            </button>
+        )
     }
-    if (props.tileActionHighlighted) {
-        className += " tile-actionHighlighted";
-    }
-    let unitClassName = "unit";
-    if (props.unit && props.unit.fsm.currentState === 'dead') {
-        unitClassName += " animated fadeOutUp";
-    }
-    return (
-        <button className={className} onClick={props.onClick}>
-            <span className={unitClassName}>{props.unit ? props.unit.icon : ""}</span>
-        </button>
-    );
 }
 
 Tile.propTypes = {
