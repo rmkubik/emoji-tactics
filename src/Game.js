@@ -86,7 +86,12 @@ export class Game extends Component {
                         unit={current.tiles[this.state.selectedTileCoords.y][this.state.selectedTileCoords.x]}
                     />
                 </div>
-                <span class="game-end-text">Victory!</span>
+                <span  
+                    className="game-end-text" 
+                    style={{display: this.state.gameState.winner ? "block" : "none"}}
+                >
+                    Victory!
+                </span>
             </div>
         );
     }
