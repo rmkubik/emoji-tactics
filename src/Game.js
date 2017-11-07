@@ -6,11 +6,6 @@ import {GameLogic} from './game/GameLogic.js';
 import {TileInfo} from './components/organisms/TileInfo.js';
 
 export class Game extends Component {
-    static propTypes = {
-        height: PropTypes.number.isRequired,
-        width: PropTypes.number.isRequired
-    } 
-
     constructor(props) {
         super(props);
         this.gameLogic = new GameLogic();
