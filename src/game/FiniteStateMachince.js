@@ -5,7 +5,7 @@ export class FiniteStateMachine {
     }
 
     handleInput(input, origin, target, map) {
-        if (this.isInputValidTransition(input)) {
+        if (this.doesStateHaveInput(input)) {
             // execute leaving state function  
             
             let transitionSucceeded = true;
@@ -26,7 +26,19 @@ export class FiniteStateMachine {
         }
     }
 
-    isInputValidTransition(input) {
+    isInputValid(input, origin, target, map) {
+        if (this.doesStateHaveInput(input)) {
+            let transitionSucceeded = true;
+            if (this.states[this.currentState][input].validationFunction !== undefined) {
+                transitionSucceeded = this.states[this.currentState][input].validationFunction
+                    .call(this.states[this.currentState][input].transitionContext, origin, target, map);
+            }
+            return transitionSucceeded;
+        }
+        return false;
+    }
+
+    doesStateHaveInput(input) {
         const state = this.currentState;
         return this.states[state][input] !== undefined;
     }
