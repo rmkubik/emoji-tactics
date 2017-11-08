@@ -59,17 +59,20 @@ export class GameLogic {
         if (tiles[origin.y][origin.x] !== null) {
             let unit = tiles[origin.y][origin.x];
             if (unit.owner === this.gameState.currentPlayer) {
-                unit.handleInput(action, origin, target, tiles);
-                // record the move in new history step 
-                this.gameState.history = history.concat([{
-                    tiles: tiles,
-                    action: new GameAction(
-                        this.gameState.currentPlayer,
-                        unit,
-                        action,
-                        target
-                    )
-                }])
+                if (unit.isInputValid(action, origin, target, tiles)) {
+                    unit.handleInput(action, origin, target, tiles);
+
+                    // record the move in new history step 
+                    this.gameState.history = history.concat([{
+                        tiles: tiles,
+                        action: new GameAction(
+                            this.gameState.currentPlayer,
+                            unit,
+                            action,
+                            target
+                        )
+                    }])
+                }
             }
         }
         
