@@ -54,6 +54,10 @@ export class Unit {
         });
     }
 
+    isInputValid(input, origin, target, map) {
+        return this.fsm.isInputValid(input, origin, target, map);
+    }
+
     handleInput(input, origin, target, map) {
         this.fsm.handleInput(input, origin, target, map);
     }
@@ -81,7 +85,6 @@ export class Unit {
     }
 
     resetState() {
-        // call at beginning of new turn
         this.state = {
             moved: false,
             tookAction: false
