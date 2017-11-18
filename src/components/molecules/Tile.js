@@ -20,9 +20,11 @@ export class Tile extends React.Component {
             unit = <Unit unit={this.props.unit}/>;
         }
         return (
+            // if unit fsm state is dead, then leave animation changes
+            // if ()
             <button className={className} onClick={this.props.onClick}>
                 <ReactCSSTransitionGroup 
-                    transitionName="example"
+                    transitionName="unit-move"
                     transitionEnterTimeout={500}
                     transitionLeaveTimeout={300}
                 >

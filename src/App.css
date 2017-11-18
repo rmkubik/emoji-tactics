@@ -98,24 +98,24 @@ ol {
   margin-left: -25%;
 }
 
-.example-enter {
+.unit-move-enter {
   opacity: 0.01;
   animation-duration: 1s;
   animation-fill-mode: both;
 }
 
-.example-enter.example-enter-active {
+.unit-move-enter.unit-move-enter-active {
   opacity: 1;
   transition: opacity 500ms ease-in;
   animation-name: bounce;
   transform-origin: center bottom;
 }
 
-.example-leave {
+.unit-move-leave {
   opacity: 1;
 }
 
-.example-leave.example-leave-active {
+.unit-move-leave.unit-move-leave-active {
   opacity: 0.01;
   transition: opacity 300ms ease-in;
 }
