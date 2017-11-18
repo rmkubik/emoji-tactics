@@ -120,6 +120,15 @@ ol {
   transition: opacity 300ms ease-in;
 }
 
+.unit-dead-leave {
+  animation-duration: 1s;
+  animation-fill-mode: both;
+}
+
+.unit-dead-leave.unit-dead-leave-active {
+  animation-name: fadeOutUp;
+}
+
 @keyframes bounce {
   from, 20%, 53%, 80%, to {
     animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
@@ -138,5 +147,16 @@ ol {
 
   90% {
     transform: translate3d(0,-4px,0);
+  }
+}
+
+@keyframes fadeOutUp {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+    transform: translate3d(0, -100%, 0);
   }
 }

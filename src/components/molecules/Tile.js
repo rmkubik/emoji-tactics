@@ -16,15 +16,18 @@ export class Tile extends React.Component {
             className += " tile-actionHighlighted";
         }
         let unit = [];
+        let animation = "unit-move";
         if (this.props.unit !== null) {
-            unit = <Unit unit={this.props.unit}/>;
+            if (this.props.unit.fsm.currentState === "dead") {
+                animation = "unit-dead";
+            } else {
+                unit = <Unit unit={this.props.unit}/>;
+            }
         }
         return (
-            // if unit fsm state is dead, then leave animation changes
-            // if ()
             <button className={className} onClick={this.props.onClick}>
                 <ReactCSSTransitionGroup 
-                    transitionName="unit-move"
+                    transitionName={animation}
                     transitionEnterTimeout={500}
                     transitionLeaveTimeout={300}
                 >
