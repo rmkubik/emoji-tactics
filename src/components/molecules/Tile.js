@@ -1,14 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {Unit} from './Unit.js';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 export class Tile extends React.Component {
-    componentDidMount() {
-        const unitElement = this.refs.unit
-        unitElement.addEventListener('animationend', () => {
-            unitElement.remove();
-        });
-    }
-
     render() {
         let className = "tile";
         if (this.props.tileSelected) {
@@ -20,18 +15,19 @@ export class Tile extends React.Component {
         if (this.props.tileActionHighlighted) {
             className += " tile-actionHighlighted";
         }
-        let unitClassName = "unit";
-        if (this.props.unit && this.props.unit.fsm.currentState === 'dead') {
-            unitClassName += " animated fadeOutUp";
+        let unit = [];
+        if (this.props.unit !== null) {
+            unit = <Unit unit={this.props.unit}/>;
         }
         return (
             <button className={className} onClick={this.props.onClick}>
-                <span
-                    ref="unit" 
-                    className={unitClassName}
+                <ReactCSSTransitionGroup 
+                    transitionName="example"
+                    transitionEnterTimeout={500}
+                    transitionLeaveTimeout={300}
                 >
-                    {this.props.unit ? this.props.unit.icon : ""}
-                </span>
+                    {unit}
+                </ReactCSSTransitionGroup>
             </button>
         )
     }

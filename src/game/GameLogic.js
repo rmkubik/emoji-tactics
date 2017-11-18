@@ -17,26 +17,26 @@ export class GameLogic {
         this.gameState = new GameState(this.players[0]);
 
         // setup initial board/history step
-        const height = 15;
+        const height = 12;
         const width = 10;
         let tiles = [];
         for (let i = 0; i < height; i++) {
             tiles.push(Array(width).fill(null));
         }
-        for (let i = 0; i < 4; i++) {
-            this.players[0].units.push(new Unit(bombIcon, 10, 4, 1, 5, this.players[0]));
+        for (let i = 0; i < 1; i++) {
+            this.players[0].units.push(new Unit(bombIcon, 10, 4, 1, 10, this.players[0]));
         }
-        for (let i = 0; i < 4; i++) {
-            this.players[1].units.push(new Unit(moonIcon, 10, 4, 1, 5, this.players[1]));
+        for (let i = 0; i < 1; i++) {
+            this.players[1].units.push(new Unit(moonIcon, 10, 4, 1, 10, this.players[1]));
         }
-        tiles[0][0] = this.players[0].units[0];
-        tiles[0][1] = this.players[0].units[1];
-        tiles[0][2] = this.players[0].units[2];
-        tiles[0][3] = this.players[0].units[3];
-        tiles[14][6] = this.players[1].units[0];
-        tiles[14][7] = this.players[1].units[1];
-        tiles[14][8] = this.players[1].units[2];
-        tiles[14][9] = this.players[1].units[3];
+        tiles[2][5] = this.players[0].units[0];
+        // tiles[0][1] = this.players[0].units[1];
+        // tiles[0][2] = this.players[0].units[2];
+        // tiles[0][3] = this.players[0].units[3];
+        tiles[9][5] = this.players[1].units[0];
+        // tiles[14][7] = this.players[1].units[1];
+        // tiles[14][8] = this.players[1].units[2];
+        // tiles[14][9] = this.players[1].units[3];
         this.gameState.history = this.gameState.history.concat(new TurnHistoryStep(tiles, null));
     }
 
@@ -78,9 +78,9 @@ export class GameLogic {
         
         // Did this action end the game? (only one team has alive units)
         let playersWithAliveUnits = this.players.filter((player) => {
-            return !player.units.reduce((areUnitsDead, unit) => {
-                return areUnitsDead && unit.fsm.currentState === 'dead';
-            }, true);
+            return player.units.some((unit) => {
+                return unit.fsm.currentState !== 'dead';
+            });
         })
         if (playersWithAliveUnits.length === 1) {
             this.gameState.winner = playersWithAliveUnits[0];
@@ -89,12 +89,9 @@ export class GameLogic {
         }
 
         // has current player moved all units?
-        let finishedTurn = true;
-        for (let unit of this.gameState.currentPlayer.units) {
-            if (unit.fsm.currentState !== 'tookAction' && unit.fsm.currentState !== 'dead') {
-                finishedTurn = false;
-            }
-        }
+        const finishedTurn = this.gameState.currentPlayer.units.every((unit) => {
+            return unit.fsm.currentState === 'tookAction' || unit.fsm.currentState === 'dead'
+        })
         if (finishedTurn) {
             // move this logic to a standby phase, or opening turn phase
             for(let unit of this.gameState.currentPlayer.units) {
@@ -106,7 +103,7 @@ export class GameLogic {
 
     // get current game state
     getCurrentGameState() {
-        return this.gameState;
+        return this.gameState.copy();
     }
 
     getNextPlayer() {
