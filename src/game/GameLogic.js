@@ -27,7 +27,7 @@ export class GameLogic {
             this.players[0].units.push(new Unit(bombIcon, 10, 4, 1, 10, this.players[0]));
         }
         for (let i = 0; i < 1; i++) {
-            this.players[1].units.push(new Unit(moonIcon, 10, 4, 1, 10, this.players[1]));
+            this.players[1].units.push(new Unit(moonIcon, 10, 4, 1, 6, this.players[1]));
         }
         tiles[2][5] = this.players[0].units[0];
         // tiles[0][1] = this.players[0].units[1];

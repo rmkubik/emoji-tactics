@@ -81,6 +81,37 @@ ol, ul {
   display: block;
 }
 
+.unit-health {
+
+}
+
+.unit-health-background {
+  position: relative;
+  left: 7px;
+  bottom: 27px;
+  display: inline-block;
+  font-size: 16px;
+  line-height: 16px;
+  padding-right: 1px;
+}
+
+.unit-health-team1 {
+  color: white;
+}
+
+.unit-health-background-team1 {
+  background-color: green;
+}
+
+.unit-health-team2 {
+  color: white;
+}
+
+.unit-health-background-team2 {
+  background-color: red;
+  border-radius: 8px;
+}
+
 ol {
   height: 300px;
   min-width: 300px;
