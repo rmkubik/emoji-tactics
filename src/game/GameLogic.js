@@ -5,6 +5,11 @@ import {Player} from './Player.js'
 
 const bombIcon = '\uD83D\uDCA3';
 const moonIcon = '\ud83c\udf1c';
+const bowIcon = '\ud83c\udff9';
+const raceCarIcon = '\ud83c\udfce';
+const turtleIcon = '\ud83d\udc22';
+const swordIcon ='\ud83d\udde1';
+
 
 export class GameLogic {
     constructor() {
@@ -23,20 +28,24 @@ export class GameLogic {
         for (let i = 0; i < height; i++) {
             tiles.push(Array(width).fill(null));
         }
-        for (let i = 0; i < 1; i++) {
-            this.players[0].units.push(new Unit(bombIcon, 10, 4, 1, 10, this.players[0]));
-        }
-        for (let i = 0; i < 1; i++) {
-            this.players[1].units.push(new Unit(moonIcon, 10, 4, 1, 6, this.players[1]));
-        }
+
+        this.players[0].units.push(new Unit(moonIcon, 5, 4, 4, 3, this.players[0]));
+        this.players[0].units.push(new Unit(bowIcon, 5, 2, 5, 3, this.players[0]));
+        this.players[0].units.push(new Unit(raceCarIcon, 4, 7, 1, 4, this.players[0]));
+        this.players[0].units.push(new Unit(turtleIcon, 15, 3, 1, 1, this.players[0]));
+        this.players[1].units.push(new Unit(moonIcon, 5, 4, 4, 3, this.players[1]));
+        this.players[1].units.push(new Unit(bowIcon, 5, 2, 5, 3, this.players[1]));
+        this.players[1].units.push(new Unit(raceCarIcon, 4, 7, 1, 4, this.players[1]));
+        this.players[1].units.push(new Unit(turtleIcon, 15, 3, 1, 1, this.players[1]));
+
         tiles[2][5] = this.players[0].units[0];
-        // tiles[0][1] = this.players[0].units[1];
-        // tiles[0][2] = this.players[0].units[2];
-        // tiles[0][3] = this.players[0].units[3];
+        tiles[2][6] = this.players[0].units[1];
+        tiles[2][3] = this.players[0].units[2];
+        tiles[2][4] = this.players[0].units[3];
         tiles[9][5] = this.players[1].units[0];
-        // tiles[14][7] = this.players[1].units[1];
-        // tiles[14][8] = this.players[1].units[2];
-        // tiles[14][9] = this.players[1].units[3];
+        tiles[9][4] = this.players[1].units[1];
+        tiles[9][6] = this.players[1].units[2];
+        tiles[9][3] = this.players[1].units[3];
         this.gameState.history = this.gameState.history.concat(new TurnHistoryStep(tiles, null));
     }
 
