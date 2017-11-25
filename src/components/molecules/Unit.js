@@ -21,7 +21,7 @@ export function Unit(props) {
     }
     return (
         <div>
-            <span className="unit">
+            <span className={props.action && props.action.action === 'takeAction' ? "unit unit-attack" : "unit"}>
                 {props.unit ? props.unit.icon : ""}
             </span>
             <div className={healthClasses.background}>

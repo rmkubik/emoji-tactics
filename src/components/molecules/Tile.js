@@ -21,7 +21,10 @@ export class Tile extends React.Component {
             if (this.props.unit.fsm.currentState === "dead") {
                 animation = "unit-dead";
             } else {
-                unit = <Unit unit={this.props.unit}/>;
+                unit = <Unit 
+                    unit={this.props.unit}
+                    action={this.props.unitAction}
+                />;
             }
         }
         return (
