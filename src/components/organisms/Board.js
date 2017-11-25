@@ -41,8 +41,10 @@ export class Board extends Component {
         const rows = this.props.tiles.map((tileRow, rowNumber) => {
             const row = tileRow.map((tile, colNumber) => {
                 let tileSelected = false;
+                let unitAction = null;
                 if (rowNumber === this.props.selectedTileCoords.y && colNumber === this.props.selectedTileCoords.x) {
                     tileSelected = true;
+                    unitAction = this.props.history[this.props.history.length-1].action;
                 }
                 let tileMoveHighlighted = false;
                 let tileActionHighlighted = false;
@@ -64,6 +66,7 @@ export class Board extends Component {
                     <Tile 
                         key={rowNumber * this.props.tiles.length + colNumber}
                         unit={this.props.tiles[rowNumber][colNumber]}
+                        unitAction={unitAction}
                         onClick={() => this.props.onClick(colNumber, rowNumber)}
                         tileSelected={tileSelected}
                         tileMoveHighlighted={tileMoveHighlighted}

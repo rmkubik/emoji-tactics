@@ -40,6 +40,7 @@ export class Tile extends React.Component {
 
 Tile.propTypes = {
     unit: PropTypes.object,
+    unitAction: PropTypes.string,
     onclick: PropTypes.func.isRequired,
     tileSelected: PropTypes.bool,
     tileMoveHighlighted: PropTypes.bool,
