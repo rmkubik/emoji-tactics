@@ -47,12 +47,14 @@ export class Game extends Component {
                 this.setState({
                     gameState: newGameState,
                     turnHistoryStep: newGameState.history.length - 1
-                })
+                });
             }
         }
-        this.setState({
-            selectedTileCoords: {x: x, y: y}
-        })
+        if (action === null || action == 'move') {
+            this.setState({
+                selectedTileCoords: {x: x, y: y}
+            });
+        }
     }
 
     render() {
