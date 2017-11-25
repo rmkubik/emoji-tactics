@@ -69,6 +69,7 @@ export class Game extends Component {
                     <Board
                         tiles={current.tiles} 
                         selectedTileCoords={this.state.selectedTileCoords}
+                        history={history}
                         onClick={(x, y) => this.handleClick(x, y)}
                     />
                 </div>

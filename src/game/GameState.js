@@ -7,7 +7,7 @@ export class GameState {
 
     copy() {
         let newGameState = new GameState(this.currentPlayer);
-        newGameState.history = this.history;
+        newGameState.history = this.history; // copy each unit out of history instead of a reference to each unit
         newGameState.winner = this.winner;
         return newGameState;
     }

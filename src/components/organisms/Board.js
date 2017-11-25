@@ -7,7 +7,8 @@ export class Board extends Component {
     static propTypes = {
         tiles: PropTypes.array.isRequired,
         onClick: PropTypes.func.isRequired,
-        selectedTileCoords: PropTypes.object
+        selectedTileCoords: PropTypes.object,
+        history: PropTypes.object
     }
 
     // renderTile(x, y) {
