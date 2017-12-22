@@ -4,6 +4,7 @@ import {Board} from './components/organisms/Board.js';
 import {TurnHistoryList} from './components/organisms/TurnHistoryList.js';
 import {GameLogic} from './game/GameLogic.js'; 
 import {TileInfo} from './components/organisms/TileInfo.js';
+import Modal from 'react-modal';
 
 export class Game extends Component {
     constructor(props) {
@@ -84,12 +85,16 @@ export class Game extends Component {
                         unit={current.tiles[this.state.selectedTileCoords.y][this.state.selectedTileCoords.x]}
                     />
                 </div>
-                <span  
-                    className="game-end-text" 
-                    style={{display: this.state.gameState.winner ? "block" : "none"}}
+                <Modal
+                    isOpen={this.state.gameState.winner !== null}
+                    // onAfterOpen={afterOpenFn}
+                    // onRequestClose={requestCloseFn}
+                    // closeTimeoutMS={n}
+                    // style={customStyle}
+                    // contentLabel="Modal"
                 >
-                    Victory!
-                </span>
+                    <h2 className="game-end-text">Victory!</h2>
+                </Modal>
             </div>
         );
     }
